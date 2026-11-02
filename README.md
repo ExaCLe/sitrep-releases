@@ -83,6 +83,7 @@ The MCP server starts the host when it is not running, so publishing works even 
 
 - **`npm install --global` fails with EACCES (Linux).** npm cannot write its global folder. Point it at your home folder, then install again: `npm config set prefix ~/.local` (make sure `~/.local/bin` is on your PATH). Alternatively, install Node with a version manager such as nvm or fnm.
 - **Port 4790 is taken.** Run `sitrep setup --port 4800`. Pages then use 4801.
+- **Reviewing from another device on your own network.** The host answers only `localhost`. To put it behind a proxy you control, such as `tailscale serve --bg --set-path /sitrep http://127.0.0.1:4790`, add `"publicHosts": ["<your machine's name>"]` and `"basePath": "/sitrep"` to `config.json` in the state folder (or set `SITREP_PUBLIC_HOSTS` and `SITREP_BASE_PATH`), then `sitrep host restart`. The index and sitreps then answer that name too, and links keep the prefix. Published pages stay on localhost.
 - **Linux server without a desktop login.** The systemd user service starts when you log in. To start it at boot, run `loginctl enable-linger $USER`.
 - **You changed Node versions.** The login entry and the MCP entries point at the Node binary that ran setup. Run `sitrep setup` again.
 
