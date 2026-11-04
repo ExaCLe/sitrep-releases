@@ -32,6 +32,18 @@ sitrep update            # install the newest release and restart the host
 sitrep update --check    # only say whether there is one
 ```
 
+The updater installs into the folder of the command you ran, even when npm's configured global folder differs. It checks the archive, installed CLI and restarted host before reporting success. A verification failure leaves the update marked failed in `sitrep host status`.
+
+Older updaters may report success while another installation remains active. On Windows, this PowerShell command installs the latest release into the folder of the active npm shim and refreshes that installation:
+
+```powershell
+$sitrepPrefix = Split-Path (Get-Command sitrep.cmd -ErrorAction Stop).Source
+npm install --global --prefix $sitrepPrefix https://github.com/ExaCLe/sitrep-releases/releases/latest/download/sitrep.tgz
+if ($LASTEXITCODE -eq 0) { & "$sitrepPrefix\sitrep.cmd" setup --refresh; & "$sitrepPrefix\sitrep.cmd" --version }
+```
+
+This preserves the existing host configuration and review data. The corrected updater takes effect after installing a release containing it.
+
 ## Publish pages
 
 Agents publish through the MCP server's `publish_page` tool and give you the URL. From a terminal:
