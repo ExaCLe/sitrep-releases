@@ -1,5 +1,7 @@
 # sitrep
 
+The v0.1.3 archive was rebuilt with the Windows updater fix. Existing users should follow the [Windows reinstall instructions](https://github.com/ExaCLe/sitrep-releases/releases/tag/v0.1.3#windows-reinstall), which use a fresh download URL and the active installation folder. Expected output: `0.1.3 (d22779375ac0)`.
+
 sitrep is a review tool for AI-written code. The agent fills a structured, visual explanation of a change down to a tier the human picks. The human reads, comments and decides. The agent answers every comment with evidence.
 
 It also runs a small host on your machine that keeps every page your agents make reachable: sitreps, and any HTML page with its images, styles and scripts.
