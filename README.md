@@ -1,10 +1,10 @@
 # sitrep
 
-The v0.1.3 archive was rebuilt with the Windows updater fix. Existing users should follow the [Windows reinstall instructions](https://github.com/ExaCLe/sitrep-releases/releases/tag/v0.1.3#windows-reinstall), which use a fresh download URL and the active installation folder. Expected output: `0.1.3 (d22779375ac0)`.
-
 sitrep is a review tool for AI-written code. The agent fills a structured, visual explanation of a change down to a tier the human picks. The human reads, comments and decides. The agent answers every comment with evidence.
 
 It also runs a small host on your machine that keeps every page your agents make reachable: sitreps, and any HTML page with its images, styles and scripts.
+
+The reader labels parts in reading order. Stable node IDs keep comments and links attached when the tree is reordered. New agent explanations pass an English readability check before `fill`, `set` or `reply` stores them. Difficult prose is refused with its location and "This is too complicated. Simplify it." Code and quoted source evidence remain literal. This check cannot prove that an explanation is true or complete; the bundled skill requires the reason for a change and enough detail to follow how it works.
 
 ## Install
 
@@ -65,7 +65,7 @@ Everything hosted is listed at <http://127.0.0.1:4790/>. Pages are served from <
 
 ## T3 Code (optional)
 
-When your agents run in [T3 Code](https://github.com/pingdotgg/t3code) on this machine, a sitrep can remember the chat that wrote it. The page then shows **Open chat** beside Send back, and **Send to agent** saves your note and delivers it to that same chat. The agent gets it as its next turn when it is busy, collects the feedback and updates the sitrep in place. Without T3 nothing changes: Send back saves the note, and you tell the agent "I gave feedback".
+When your agents run in [T3 Code](https://github.com/pingdotgg/t3code) on this machine, a sitrep can remember the chat that wrote it. The page then shows **Open chat** beside Send back, and **Send back** tells that same chat about your comments in one click. The agent gets them as its next turn when it is busy, collects the feedback and updates the sitrep in place. A sitrep that does not know its chat yet (written in a Codex chat outside a worktree, or before you connected T3) finds it through its pull request when you send it back; when nothing identifies one chat, the page says so and `sitrep link-chat` binds it. Without T3, the page asks you to tell the agent "I gave feedback". Send back stays off until you leave a comment.
 
 ```sh
 sitrep connect t3                    # finds the T3 CLI (T3CODE_CLI_PATH, ~/.t3/bin/t3, or t3 on PATH) and checks it runs
@@ -110,7 +110,7 @@ Collection reads the sitrep's data folder directly and works without a running h
 | `sitrep host start` / `stop` / `restart` | Control the background host |
 | `sitrep host open` | Open the index in the browser |
 | `sitrep host autostart on` / `off` | Start at login, or stop doing so |
-| `sitrep connect t3` / `sitrep disconnect t3` | Let Send back deliver to a sitrep's T3 Code chat, or stop |
+| `sitrep connect t3` / `sitrep disconnect t3` | Let Send back reach a sitrep's T3 Code chat, or stop |
 | `sitrep link-chat <id>` | Bind a sitrep to a T3 Code chat (`--thread <id>`, `--unlink`) |
 | `sitrep storage` | Where sitreps are kept and how much space they take |
 | `sitrep uninstall` | Remove the login entry and MCP entries, and stop the host (`--purge` also deletes pages) |
