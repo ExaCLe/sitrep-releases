@@ -4,7 +4,7 @@ sitrep is a review tool for AI-written code. The agent fills a structured, visua
 
 It also runs a small host on your machine that keeps every page your agents make reachable: sitreps, and any HTML page with its images, styles and scripts.
 
-The reader labels parts in reading order. Stable node IDs keep comments and links attached when the tree is reordered. New agent explanations pass an English readability check before `fill`, `set` or `reply` stores them. Difficult prose is refused with its location and "This is too complicated. Simplify it." Code and quoted source evidence remain literal. This check cannot prove that an explanation is true or complete; the bundled skill requires the reason for a change and enough detail to follow how it works.
+The reader labels parts in reading order. Stable node IDs keep comments and links attached when the tree is reordered. New agent explanations pass an English or German readability check before `fill`, `set` or `reply` stores them. Difficult prose is refused with its location and "This is too complicated. Simplify it." Code and quoted source evidence remain literal. This check cannot prove that an explanation is true or complete; the bundled skill requires the reason for a change and enough detail to follow how it works.
 
 ## Install
 
